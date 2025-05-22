@@ -62,15 +62,12 @@ if [ ! -f "./patch_for_spectrum.py" ]; then
 fi
 mkdir -p "$SAVE_DIR"
 
-# Apply the patch using the external script
-echo "🔧 Applying Spectrum patch..."
-python ./patch_for_spectrum.py
-if [ $? -ne 0 ]; then
-    echo "❌ Error: Spectrum patching script failed."
-    exit 1
-fi
-echo "✅ Spectrum patch applied successfully."
-
+# ── Install Spectrum Patcher and Set Environment Variable ─────────────────────
+echo "🔧 Ensuring verl_spectrum_patch is installed and SPECTRUM_YAML_PATH is set..."
+SCRIPT_DIR=$(cd -- "$(dirname -- "$0")" &> /dev/null && pwd)
+python3 -m pip install -e "$SCRIPT_DIR/verl_spectrum_patch" # Use SCRIPT_DIR
+export SPECTRUM_YAML_PATH # Export for sitecustomize.py to pick up
+echo "✅ verl_spectrum_patch installation attempted and SPECTRUM_YAML_PATH exported."
 
 # ── RLOO run with Spectrum (based on verl/examples/rloo_trainer/run_qwen2-7b.sh) ───────────
 # Note: Parameters like learning rate, max_prompt/response_length, etc., are taken from the example.
