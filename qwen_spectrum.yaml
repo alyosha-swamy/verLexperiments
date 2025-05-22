@@ -1,0 +1,6 @@
+# Default Spectrum YAML file - unfreezes only attention query/key/value/output projections
+unfrozen_parameters:
+  - "q_proj"
+  - "k_proj"
+  - "v_proj"
+  - "o_proj" 
