@@ -3,6 +3,7 @@ import sys
 import logging
 from importlib import import_module
 import datetime
+import traceback
 
 # Create a proof file that this script has run
 # This helps debug if stdout/stderr is not captured from workers.
@@ -81,7 +82,8 @@ if YAML and os.path.exists(YAML):
             print("DEBUG_SITECUSTOMIZE: Worker already patched (_spectrum_patched is True). Skipping.")
 
     except Exception as e:
-        error_message = f"ERROR_SITECUSTOMIZE: Failed during sitecustomize patch: {e}\nTraceback: {import traceback; traceback.format_exc()}"
+        tb_str = traceback.format_exc()
+        error_message = f"ERROR_SITECUSTOMIZE: Failed during sitecustomize patch: {e}\nTraceback: {tb_str}"
         _log_to_proof_file(error_message)
         print(error_message)
         # Optionally re-raise or handle as needed
