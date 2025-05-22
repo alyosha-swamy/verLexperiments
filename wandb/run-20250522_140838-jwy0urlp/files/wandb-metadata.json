@@ -1,0 +1,103 @@
+{
+  "os": "Linux-5.15.0-134-generic-x86_64-with-glibc2.35",
+  "python": "CPython 3.10.12",
+  "startedAt": "2025-05-22T14:08:38.599819Z",
+  "args": [
+    "--node-ip-address=172.17.0.2",
+    "--node-manager-port=42863",
+    "--object-store-name=/tmp/ray/session_2025-05-22_14-06-17_131538_1463952/sockets/plasma_store",
+    "--raylet-name=/tmp/ray/session_2025-05-22_14-06-17_131538_1463952/sockets/raylet",
+    "--redis-address=None",
+    "--metrics-agent-port=51474",
+    "--logging-rotate-bytes=536870912",
+    "--logging-rotate-backup-count=5",
+    "--runtime-env-agent-port=51732",
+    "--gcs-address=172.17.0.2:60038",
+    "--session-name=session_2025-05-22_14-06-17_131538_1463952",
+    "--temp-dir=/tmp/ray",
+    "--webui=127.0.0.1:8265",
+    "--cluster-id=4275a7f5e93782d583c935feee85beebf4be381c5ef5a64075e671d3",
+    "--startup-token=224",
+    "--worker-launch-time-ms=1747922782455",
+    "--node-id=0c3126ab198dd172ed0b4358ae28265d42aa937b085f70213e98a8b5",
+    "--runtime-env-hash=-1053485826",
+    "--enable-resource-isolation=false"
+  ],
+  "program": "/alloc/.venv/lib/python3.10/site-packages/ray/_private/workers/default_worker.py",
+  "git": {
+    "remote": "https://github.com/alyosha-swamy/verLexperiments.git",
+    "commit": "8d56c1745ee149468d84abc27c2576270cdac862"
+  },
+  "email": "raghav.ravishankar11@gmail.com",
+  "root": "/alloc/verLexperiments",
+  "host": "0272811a4f51",
+  "executable": "/alloc/.venv/bin/python3",
+  "cpu_count": 112,
+  "cpu_count_logical": 224,
+  "gpu": "NVIDIA H100 80GB HBM3",
+  "gpu_count": 8,
+  "disk": {
+    "/": {
+      "total": "900072767488",
+      "used": "368792449024"
+    }
+  },
+  "memory": {
+    "total": "2163941838848"
+  },
+  "cpu": {
+    "count": 112,
+    "countLogical": 224
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA H100 80GB HBM3",
+      "memoryTotal": "85520809984",
+      "cudaCores": 16896,
+      "architecture": "Hopper"
+    },
+    {
+      "name": "NVIDIA H100 80GB HBM3",
+      "memoryTotal": "85520809984",
+      "cudaCores": 16896,
+      "architecture": "Hopper"
+    },
+    {
+      "name": "NVIDIA H100 80GB HBM3",
+      "memoryTotal": "85520809984",
+      "cudaCores": 16896,
+      "architecture": "Hopper"
+    },
+    {
+      "name": "NVIDIA H100 80GB HBM3",
+      "memoryTotal": "85520809984",
+      "cudaCores": 16896,
+      "architecture": "Hopper"
+    },
+    {
+      "name": "NVIDIA H100 80GB HBM3",
+      "memoryTotal": "85520809984",
+      "cudaCores": 16896,
+      "architecture": "Hopper"
+    },
+    {
+      "name": "NVIDIA H100 80GB HBM3",
+      "memoryTotal": "85520809984",
+      "cudaCores": 16896,
+      "architecture": "Hopper"
+    },
+    {
+      "name": "NVIDIA H100 80GB HBM3",
+      "memoryTotal": "85520809984",
+      "cudaCores": 16896,
+      "architecture": "Hopper"
+    },
+    {
+      "name": "NVIDIA H100 80GB HBM3",
+      "memoryTotal": "85520809984",
+      "cudaCores": 16896,
+      "architecture": "Hopper"
+    }
+  ],
+  "cudaVersion": "12.4"
+}

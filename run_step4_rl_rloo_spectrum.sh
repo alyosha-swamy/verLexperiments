@@ -65,9 +65,9 @@ mkdir -p "$SAVE_DIR"
 # ── Install Spectrum Patcher and Set Environment Variable ─────────────────────
 echo "🔧 Ensuring verl_spectrum_patch is installed and SPECTRUM_YAML_PATH is set..."
 SCRIPT_DIR=$(cd -- "$(dirname -- "$0")" &> /dev/null && pwd)
-python3 -m pip install -e "$SCRIPT_DIR/verl_spectrum_patch" # Use SCRIPT_DIR
+python3 -m pip install -e "$SCRIPT_DIR" # Install the repo root in editable mode
 export SPECTRUM_YAML_PATH # Export for sitecustomize.py to pick up
-echo "✅ verl_spectrum_patch installation attempted and SPECTRUM_YAML_PATH exported."
+echo "✅ verLexperiments repo installed in editable mode and SPECTRUM_YAML_PATH exported."
 
 # ── RLOO run with Spectrum (based on verl/examples/rloo_trainer/run_qwen2-7b.sh) ───────────
 # Note: Parameters like learning rate, max_prompt/response_length, etc., are taken from the example.

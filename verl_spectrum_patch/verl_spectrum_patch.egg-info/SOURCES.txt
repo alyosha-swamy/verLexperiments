@@ -1,0 +1,5 @@
+setup.py
+verl_spectrum_patch.egg-info/PKG-INFO
+verl_spectrum_patch.egg-info/SOURCES.txt
+verl_spectrum_patch.egg-info/dependency_links.txt
+verl_spectrum_patch.egg-info/top_level.txt

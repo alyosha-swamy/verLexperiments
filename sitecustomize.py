@@ -14,11 +14,11 @@ def _log_to_proof_file(message):
     with open(proof_file_path, "a") as f:
         f.write(f"{datetime.datetime.now().isoformat()} - {message}\n")
 
-_log_to_proof_file(f"DEBUG_SITECUSTOMIZE: sitecustomize.py in verl_spectrum_patch is attempting to run. PID: {pid}")
+_log_to_proof_file(f"DEBUG_SITECUSTOMIZE: sitecustomize.py (top-level) is attempting to run. PID: {pid}")
 _log_to_proof_file(f"DEBUG_SITECUSTOMIZE: PYTHONPATH: {os.getenv('PYTHONPATH')}")
 _log_to_proof_file(f"DEBUG_SITECUSTOMIZE: sys.path: {sys.path}")
 
-print(f"DEBUG_SITECUSTOMIZE: sitecustomize.py in verl_spectrum_patch is attempting to run. PID: {pid} PYTHONPATH: {os.getenv('PYTHONPATH')}")
+print(f"DEBUG_SITECUSTOMIZE: sitecustomize.py (top-level) is attempting to run. PID: {pid} PYTHONPATH: {os.getenv('PYTHONPATH')}")
 
 log = logging.getLogger(__name__) # Keep this logger if verl uses it, otherwise can remove
 YAML = os.getenv("SPECTRUM_YAML_PATH")
@@ -55,6 +55,8 @@ if YAML and os.path.exists(YAML):
                     _log_to_proof_file(f"DEBUG_SITECUSTOMIZE_PATCH_APPLIED: Worker {self} is actor and has actor_module_fsdp. Applying Spectrum freezing. PID: {os.getpid()}")
                     print(f"DEBUG_SITECUSTOMIZE_PATCH_APPLIED: Worker {self} is actor and has actor_module_fsdp. Applying Spectrum freezing. PID: {os.getpid()}")
                     
+                    # This import should still work if 'verLexperiments' (repo root) is on sys.path
+                    # and verl_spectrum_patch is a package within it.
                     from verl_spectrum_patch.freezer import apply_spectrum_freezing
                     
                     self.actor_module_fsdp = apply_spectrum_freezing(self.actor_module_fsdp, YAML)
@@ -92,5 +94,5 @@ else:
         _log_to_proof_file(f"DEBUG_SITECUSTOMIZE: SPECTRUM_YAML_PATH is set to '{YAML}', but file does not exist. Patch not applied.")
         print(f"DEBUG_SITECUSTOMIZE: SPECTRUM_YAML_PATH is set to '{YAML}', but file does not exist. Patch not applied.")
 
-_log_to_proof_file("DEBUG_SITECUSTOMIZE: sitecustomize.py execution finished.")
-print("DEBUG_SITECUSTOMIZE: sitecustomize.py execution finished.") 
+_log_to_proof_file("DEBUG_SITECUSTOMIZE: sitecustomize.py (top-level) execution finished.")
+print("DEBUG_SITECUSTOMIZE: sitecustomize.py (top-level) execution finished.") 
