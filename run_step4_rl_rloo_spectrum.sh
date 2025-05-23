@@ -18,7 +18,7 @@ EURUS_VAL_FILE="/home/ubuntu/verLexperiments/data/validation_rloo_subsets.parque
 
 # Spectrum Configuration
 USE_SPECTRUM_FREEZING=True
-export SPECTRUM_YAML_PATH="/home/ubuntu/spectrum/snr_results_Qwen-Qwen2.5-Math-7B_unfrozenparameters_50percent.yaml"
+export SPECTRUM_YAML_PATH="/home/ubuntu/verLexperiments/snr_results_Qwen-Qwen2.5-Math-7B_unfrozenparameters_50percent.yaml"
 
 NPROC_PER_NODE=8 # Adapted from Qwen example (and user request)
 # TOTAL_TRAINING_STEPS and other batch size variables are removed as values are now hardcoded from qwen2 example.
