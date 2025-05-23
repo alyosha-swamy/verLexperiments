@@ -3,27 +3,27 @@ set -x # Added from Qwen example
 set -euo pipefail
 
 # Ensure the project directory (containing setup.py) is in PYTHONPATH
-export PYTHONPATH="/alloc/verl:${PYTHONPATH:-}"
+export PYTHONPATH="/home/ubuntu/verl:${PYTHONPATH:-}"
 
 export CUDA_LAUNCH_BLOCKING=1
 
 # ── User-tunable parameters ────────────────────────────────────────────────────
 # Model from Step 3 (Samsungstep3)
-BASE_MODEL_PATH="/alloc/Samsungstep3"
+BASE_MODEL_PATH="/home/ubuntu/Samsungstep3"
 # Output directory for this Step 4 model
 SAVE_DIR="./sky_t1_7B_step4_rloo_spectrum" # Changed save directory
 # Eurus-2-RL-Data path.
-EURUS_TRAIN_FILE="/alloc/Eurus-2-RL-Data/train_rloo_subsets.parquet"
-EURUS_VAL_FILE="/alloc/Eurus-2-RL-Data/validation_rloo_subsets.parquet"
+EURUS_TRAIN_FILE="/home/ubuntu/Eurus-2-RL-Data/train_rloo_subsets.parquet"
+EURUS_VAL_FILE="/home/ubuntu/Eurus-2-RL-Data/validation_rloo_subsets.parquet"
 
 # Spectrum Configuration
 USE_SPECTRUM_FREEZING=True
-export SPECTRUM_YAML_PATH="/alloc/spectrum/snr_results_Qwen-Qwen2.5-Math-7B_unfrozenparameters_50percent.yaml"
+export SPECTRUM_YAML_PATH="/home/ubuntu/spectrum/snr_results_Qwen-Qwen2.5-Math-7B_unfrozenparameters_50percent.yaml"
 
 NPROC_PER_NODE=8 # Adapted from Qwen example (and user request)
 # TOTAL_TRAINING_STEPS and other batch size variables are removed as values are now hardcoded from qwen2 example.
 
-echo "🚀 Starting Step 4: RL Again (RLOO) with Spectrum Parameter Freezing (External Patch) - Adapted from Qwen2-7B example"
+echo "🚀 Starting Step 4: RL Again (RLOO) with Spectrum Parameter Freezing (top-level sitecustomize) - Adapted from Qwen2-7B example"
 echo " GPUs (trainer.n_gpus_per_node): $NPROC_PER_NODE"
 echo " Base Model (actor_rollout_ref.model.path): $BASE_MODEL_PATH"
 echo " Training Data (data.train_files): $EURUS_TRAIN_FILE"
@@ -56,16 +56,13 @@ if [ "$USE_SPECTRUM_FREEZING" = "True" ] && [ ! -f "$SPECTRUM_YAML_PATH" ]; then
     echo "❌ Error: Spectrum YAML file not found: $SPECTRUM_YAML_PATH"
     exit 1
 fi
-if [ ! -f "./patch_for_spectrum.py" ]; then
-    echo "❌ Error: patch_for_spectrum.py not found in current directory. Please run patch (1).sh first or ensure it's in the correct location."
-    exit 1
-fi
+
 mkdir -p "$SAVE_DIR"
 
 # ── Install Spectrum Patcher and Set Environment Variable ─────────────────────
-echo "🔧 Ensuring verl_spectrum_patch is installed and SPECTRUM_YAML_PATH is set..."
+echo "🔧 Ensuring verLexperiments repo is editable and SPECTRUM_YAML_PATH is set..."
 SCRIPT_DIR=$(cd -- "$(dirname -- "$0")" &> /dev/null && pwd)
-python3 -m pip install -e "$SCRIPT_DIR" # Install the repo root in editable mode
+/home/ubuntu/.venv/bin/python3 -m pip install -e "$SCRIPT_DIR" # Install the repo root in editable mode
 export SPECTRUM_YAML_PATH # Export for sitecustomize.py to pick up
 echo "✅ verLexperiments repo installed in editable mode and SPECTRUM_YAML_PATH exported."
 
@@ -79,7 +76,8 @@ if [ "$USE_SPECTRUM_FREEZING" = "True" ]; then
     SPECTRUM_HYDRA_ARGS="+data.use_spectrum_freezing=$USE_SPECTRUM_FREEZING +data.spectrum_yaml_path=\"$SPECTRUM_YAML_PATH\""
 fi
 
-python3 -m verl.trainer.main_ppo \
+echo "🚀 Launching RLOO training with Spectrum (relying on top-level sitecustomize.py for patching)..."
+/home/ubuntu/.venv/bin/python3 -m verl.trainer.main_ppo \
     $SPECTRUM_HYDRA_ARGS \
     algorithm.adv_estimator=rloo \
     data.train_files="$EURUS_TRAIN_FILE" \
@@ -120,4 +118,4 @@ python3 -m verl.trainer.main_ppo \
     trainer.test_freq=5 \
     trainer.total_epochs=15
 
-echo "✅ RLOO Spectrum training script (with external patch) launched. Outputs will be in $SAVE_DIR" 
+echo "✅ RLOO Spectrum training script launched. Outputs will be in $SAVE_DIR" 
