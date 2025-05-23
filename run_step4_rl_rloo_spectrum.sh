@@ -13,7 +13,7 @@ BASE_MODEL_PATH="/home/ubuntu/Samsungstep3"
 # Output directory for this Step 4 model
 SAVE_DIR="./sky_t1_7B_step4_rloo_spectrum" # Changed save directory
 # Eurus-2-RL-Data path.
-EURUS_TRAIN_FILE="/home/ubuntu/verLexperiments/data/train_rloo_subsets.parquet"
+EURUS_TRAIN_FILE="/home/ubuntu/verLexperiments/data/train_rloo_subsets_15k.parquet"
 EURUS_VAL_FILE="/home/ubuntu/verLexperiments/data/validation_rloo_subsets.parquet"
 
 # Spectrum Configuration
