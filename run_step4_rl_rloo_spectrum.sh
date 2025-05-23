@@ -62,6 +62,7 @@ mkdir -p "$SAVE_DIR"
 # ── Install Spectrum Patcher and Set Environment Variable ─────────────────────
 echo "🔧 Ensuring verLexperiments repo is editable and SPECTRUM_YAML_PATH is set..."
 SCRIPT_DIR=$(cd -- "$(dirname -- "$0")" &> /dev/null && pwd)
+/home/ubuntu/.venv/bin/python3 -m uv pip install ray[default] # Ensure ray is installed
 /home/ubuntu/.venv/bin/python3 -m pip install -e "$SCRIPT_DIR" # Install the repo root in editable mode
 export SPECTRUM_YAML_PATH # Export for sitecustomize.py to pick up
 echo "✅ verLexperiments repo installed in editable mode and SPECTRUM_YAML_PATH exported."
