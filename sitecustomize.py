@@ -27,6 +27,7 @@ YAML = os.getenv("SPECTRUM_YAML_PATH")
 _log_to_proof_file(f"DEBUG_SITECUSTOMIZE: SPECTRUM_YAML_PATH from env: {YAML}")
 print(f"DEBUG_SITECUSTOMIZE: SPECTRUM_YAML_PATH from env: {YAML}")
 
+'''
 if YAML and os.path.exists(YAML):
     _log_to_proof_file(f"DEBUG_SITECUSTOMIZE: YAML path {YAML} exists. Attempting to patch.")
     print(f"DEBUG_SITECUSTOMIZE: YAML path {YAML} exists. Attempting to patch.")
@@ -95,6 +96,6 @@ else:
     elif not os.path.exists(YAML):
         _log_to_proof_file(f"DEBUG_SITECUSTOMIZE: SPECTRUM_YAML_PATH is set to '{YAML}', but file does not exist. Patch not applied.")
         print(f"DEBUG_SITECUSTOMIZE: SPECTRUM_YAML_PATH is set to '{YAML}', but file does not exist. Patch not applied.")
-
-_log_to_proof_file("DEBUG_SITECUSTOMIZE: sitecustomize.py (top-level) execution finished.")
-print("DEBUG_SITECUSTOMIZE: sitecustomize.py (top-level) execution finished.") 
+'''
+_log_to_proof_file("DEBUG_SITECUSTOMIZE: sitecustomize.py (top-level) execution finished (PATCHING DISABLED).")
+print("DEBUG_SITECUSTOMIZE: sitecustomize.py (top-level) execution finished (PATCHING DISABLED).") 

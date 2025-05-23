@@ -37,7 +37,7 @@ echo " Reference Log Prob Micro Batch Size per GPU (actor_rollout_ref.ref.log_pr
 echo " Max Prompt Length (data.max_prompt_length): 512"
 echo " Max Response Length (data.max_response_length): 1024"
 echo " Tensor Model Parallel Size (actor_rollout_ref.rollout.tensor_model_parallel_size): 2"
-echo " GPU Memory Utilization (actor_rollout_ref.rollout.gpu_memory_utilization): 0.9"
+echo " GPU Memory Utilization (actor_rollout_ref.rollout.gpu_memory_utilization): 0.6"
 echo " Rollouts (actor_rollout_ref.rollout.n): 5"
 echo " Total Epochs (trainer.total_epochs): 15"
 echo " Test Frequency (trainer.test_freq): 5"
@@ -101,7 +101,7 @@ echo "🚀 Launching RLOO training with Spectrum (relying on top-level sitecusto
     actor_rollout_ref.rollout.tensor_model_parallel_size=2 \
     actor_rollout_ref.rollout.name=vllm \
     actor_rollout_ref.rollout.dtype="bfloat16" \
-    actor_rollout_ref.rollout.gpu_memory_utilization=0.9 \
+    actor_rollout_ref.rollout.gpu_memory_utilization=0.6 \
     actor_rollout_ref.rollout.n=5 \
     actor_rollout_ref.ref.log_prob_micro_batch_size_per_gpu=80 \
     actor_rollout_ref.ref.fsdp_config.param_offload=True \
